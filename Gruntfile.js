@@ -3,6 +3,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        
+      }, 
+      dist: {
+        src: [
+          './public/client/app.js', 
+          './public/client/link.js', 
+          './public/client/links.js', 
+          './public/client/linkView.js', 
+          './public/client/linksView.js', 
+          './public/client/createLinkView.js', 
+          './public/client/router.js'], 
+        dest: "./public/client/main.js"
+      }
     },
 
     mochaTest: {
@@ -21,6 +35,15 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+         banner: '/******* This file has been UGLIFIED! ********/'
+        
+      }, 
+      dist: {
+        src: [
+          './public/client/main.js'], 
+        dest: "./public/dist/ugly.js"
+      }
     },
 
     jshint: {
@@ -95,6 +118,10 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'test', 
+    'concat', 
+    'uglify'
+
   ]);
 
   grunt.registerTask('upload', function(n) {
