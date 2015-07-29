@@ -32,7 +32,7 @@
     "grunt-mocha-test": "^0.10.0",
     "supertest": "^0.10.0"
   },
-  
+
   "devDependencies": {
     "azure-cli": ">0.0.0"
 

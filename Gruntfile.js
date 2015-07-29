@@ -49,6 +49,13 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         // Add filespec list here
+        './public/client/app.js', 
+        './public/client/link.js', 
+        './public/client/links.js', 
+        './public/client/linkView.js', 
+        './public/client/linksView.js', 
+        './public/client/createLinkView.js', 
+        './public/client/router.js'
       ],
       options: {
         force: 'true',
@@ -114,6 +121,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
+    'jshint',
     'mochaTest'
   ]);
 
@@ -121,7 +129,6 @@ module.exports = function(grunt) {
     'test', 
     'concat', 
     'uglify'
-
   ]);
 
   grunt.registerTask('upload', function(n) {
