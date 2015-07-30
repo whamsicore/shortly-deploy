@@ -1,10 +1,19 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/myapp'); 
+// var mongoPath = process.env.PORT || 'mongodb://localhost/shortly'
+mongoose.connect('mongodb://localhost/shortly'); 
+
+//filename: path.join(__dirname, '../db/shortly.sqlite')
 
 
+var db = mongoose.connection;
 
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function (callback) {
+  console.log("We are connected! ------------>");// yay!
+});
 
 
 var Schema = mongoose.Schema;
@@ -28,6 +37,32 @@ var urlsSchema = new Schema({
   updated_at: { type: Date, default: Date.now }
 });
 
+
+var User = mongoose.model('User', userSchema);
+
+var payton = new User({ username: 'payton' });
+var Warren = new User({ 'username': 'Warren' });
+
+payton.save(function (err, payton) {
+  if (err) return console.error(err);
+
+  console.log("Payton is in the house! ------------>", payton.username);// yay!
+
+});
+
+Warren.save(function (err, warren) {
+  if (err) return console.error(err);
+
+  console.log("Warren is in the house! ------------>", warren.username);// yay!
+
+});
+
+User.find(function(err, users){
+
+
+  console.log(users);
+})
+// payton.speak(); 
 // module.exports = db;
 
 
