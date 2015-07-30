@@ -136,6 +136,16 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   exitWithMessageOnError "grunt failed"
   cd - > /dev/null
 fi
+
+# 6. Run MongoDB
+# if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
+#   cd "$DEPLOYMENT_TARGET"
+#   eval $NPM_CMD install grunt-cli
+#   exitWithMessageOnError "installing grunt failed"
+#   ./node_modules/.bin/grunt --no-color build
+#   exitWithMessageOnError "grunt failed"
+#   cd - > /dev/null
+# fi
 ##################################################################################################################################
 
 # Post deployment stub
